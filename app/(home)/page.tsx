@@ -1,15 +1,21 @@
-import Image from "next/image";
+"use client";
+
 import Input from "../componenets/input";
 import Button from "../componenets/button";
 
-import onValidation from "./action";
+import { useFormState } from "react-dom";
+import smsLogin from "./action";
 
-
+const initial = {
+  token: false,
+  error: undefined,
+};
 
 export default function Home() {
+  const [state, dispatch] = useFormState(smsLogin, initial);
   return (
     <div className="p-10">
-      <form action={onValidation} className="flex flex-col gap-4">
+      <form action={dispatch} className="flex flex-col gap-4">
         <Input
           name="phone"
           type="number"
